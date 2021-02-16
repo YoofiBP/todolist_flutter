@@ -5,9 +5,10 @@ class TaskScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Map<String, dynamic>> tasks = [
-      {"task": "Wash clothes", "completed": true},
+      {"task": "Wash clothes", "completed": false},
       {"task": "Code", "completed": false},
-      {"task": "Feed Dog", "completed": false}
+      {"task": "Feed Dog", "completed": true},
+      {"task": "Eat Lunch", "completed": false}
     ];
     return Scaffold(
       floatingActionButton: FloatingActionButton(
@@ -47,7 +48,7 @@ class TaskScreen extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   Text(
-                    '12 Tasks',
+                    '${tasks.length} tasks',
                     style: TextStyle(color: Colors.white, fontSize: 18),
                   )
                 ],
