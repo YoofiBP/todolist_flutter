@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
+import '../models/task.dart';
 import 'task_row.dart';
 
 class TaskList extends StatelessWidget {
-  const TaskList({
-    Key key,
-    @required this.tasks,
-  }) : super(key: key);
-
-  final List<Map<String, dynamic>> tasks;
+  final List<Task> tasks;
+  final Function toggleCallback;
+  TaskList({@required this.tasks, @required this.toggleCallback});
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: tasks.length,
+      itemCount: this.tasks.length,
       itemBuilder: (context, idx) {
-        return TaskRow(task: tasks[idx]);
+        return TaskRow(
+          task: this.tasks[idx],
+          onCheck: this.toggleCallback,
+        );
       },
     );
   }

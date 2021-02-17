@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
+import '../models/task.dart';
 
 class TaskRow extends StatelessWidget {
-  const TaskRow({
-    Key key,
-    @required this.task,
-  }) : super(key: key);
+  final Task task;
+  final Function onCheck;
 
-  final Map<String, dynamic> task;
-
+  TaskRow({@required this.task, @required this.onCheck});
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 30, right: 50),
       child: ListTile(
-        title: Text(task["task"],
+        title: Text(task.task,
             style: TextStyle(
-              decoration: task["completed"]
+              decoration: task.isDone
                   ? TextDecoration.lineThrough
                   : TextDecoration.none,
               fontWeight: FontWeight.w700,
               fontSize: 18,
             )),
         trailing: Checkbox(
-          value: task["completed"],
-          onChanged: (bool value) {},
+          value: task.isDone,
+          onChanged: (value) {
+            this.onCheck(this.task);
+          },
         ),
       ),
     );

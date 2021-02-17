@@ -1,19 +1,51 @@
 import 'package:flutter/material.dart';
 import '../components/task_list.dart';
+import './add_task_screen.dart';
+import '../models/task.dart';
 
-class TaskScreen extends StatelessWidget {
+class TaskScreen extends StatefulWidget {
+  @override
+  _TaskScreenState createState() => _TaskScreenState();
+}
+
+class _TaskScreenState extends State<TaskScreen> {
+  final List<Task> tasks = [
+    Task(task: "Wash clothes"),
+    Task(task: "Code"),
+    Task(task: "Feed Dog"),
+    Task(task: "Eat Lunch"),
+  ];
+
+  void addTask(newTask) {
+    setState(() {
+      tasks.add(Task(task: newTask));
+    });
+  }
+
+  void toggleComplete(Task task) {
+    setState(() {
+      task.toggleDone();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final List<Map<String, dynamic>> tasks = [
-      {"task": "Wash clothes", "completed": false},
-      {"task": "Code", "completed": false},
-      {"task": "Feed Dog", "completed": true},
-      {"task": "Eat Lunch", "completed": false}
-    ];
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.lightBlue[300],
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(
+              context: context,
+              isScrollControlled: true,
+              builder: (BuildContext context) => SingleChildScrollView(
+                      child: Container(
+                    padding: EdgeInsets.only(
+                        bottom: MediaQuery.of(context).viewInsets.bottom),
+                    child: AddTaskModal(
+                      addCallback: addTask,
+                    ),
+                  )));
+        },
         child: Icon(Icons.add),
       ),
       backgroundColor: Colors.lightBlue[300],
@@ -48,7 +80,7 @@ class TaskScreen extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   Text(
-                    '${tasks.length} tasks',
+                    '${this.tasks.length} tasks',
                     style: TextStyle(color: Colors.white, fontSize: 18),
                   )
                 ],
@@ -65,9 +97,12 @@ class TaskScreen extends StatelessWidget {
                         topLeft: Radius.circular(20),
                         topRight: Radius.circular(20))),
                 height: 100,
-                child: TaskList(tasks: tasks),
+                child: TaskList(
+                  tasks: this.tasks,
+                  toggleCallback: toggleComplete,
+                ),
               ),
-            )
+            ),
           ],
         ),
       ),
