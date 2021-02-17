@@ -7,6 +7,7 @@ A new flutter module project.
 The objective of this project is to build a todo list app and by so down gain an understanding of state management within flutter projects. It makes use of the Proider package and Provider Design pattern in flutter
 
 ## Demo GIF
+
 ![Finished App]
 (https://github.com/YoofiBP/todolist_flutter/blob/master/Screen-Recording-2021-02-17-at-1.gif)
 
