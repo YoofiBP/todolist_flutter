@@ -8,7 +8,7 @@ The objective of this project is to build a todo list app and by so down gain an
 
 ## Demo GIF
 
-<img src="https://github.com/YoofiBP/todolist_flutter/blob/master/Screen-Recording-2021-02-17-at-1.gif" width="400" height="600"/>
+<img src="https://github.com/YoofiBP/todolist_flutter/blob/master/Screen-Recording-2021-02-17-at-1.gif" width="400" height="800"/>
 
 ## What was learned
 - Effectively using Stateful and Stateless widgets
