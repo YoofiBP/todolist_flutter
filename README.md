@@ -14,6 +14,8 @@ The objective of this project is to build a todo list app and by so down gain an
 
 ![](http://i.imgur.com/OUkLi.gif)
 
+![](https://github.com/YoofiBP/todolist_flutter/blob/master/Screen-Recording-2021-02-17-at-1.gif)
+
 ## What was learned
 - Effectively using Stateful and Stateless widgets
 - What is means to "lift state up" in flutter
