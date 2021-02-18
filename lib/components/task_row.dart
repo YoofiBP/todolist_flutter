@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:todolist/models/todolist.dart';
 import '../models/task.dart';
+import 'package:provider/provider.dart';
 
 class TaskRow extends StatelessWidget {
   final Task task;
@@ -22,7 +24,8 @@ class TaskRow extends StatelessWidget {
         trailing: Checkbox(
           value: task.isDone,
           onChanged: (value) {
-            this.onCheck(this.task);
+            Provider.of<TodoModel>(context, listen: false)
+                .toggleDone(this.task.id);
           },
         ),
       ),

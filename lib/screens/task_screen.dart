@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todolist/models/todolist.dart';
 import '../components/task_list.dart';
 import './add_task_screen.dart';
 import '../models/task.dart';
@@ -9,22 +11,15 @@ class TaskScreen extends StatefulWidget {
 }
 
 class _TaskScreenState extends State<TaskScreen> {
-  final List<Task> tasks = [
-    Task(task: "Wash clothes"),
-    Task(task: "Code"),
-    Task(task: "Feed Dog"),
-    Task(task: "Eat Lunch"),
-  ];
-
   void addTask(newTask) {
     setState(() {
-      tasks.add(Task(task: newTask));
+      // tasks.add(Task(task: newTask));
     });
   }
 
   void toggleComplete(Task task) {
     setState(() {
-      task.toggleDone();
+      // task.toggleDone();
     });
   }
 
@@ -37,13 +32,11 @@ class _TaskScreenState extends State<TaskScreen> {
           showModalBottomSheet(
               context: context,
               isScrollControlled: true,
-              builder: (BuildContext context) => SingleChildScrollView(
+              builder: (context) => SingleChildScrollView(
                       child: Container(
                     padding: EdgeInsets.only(
                         bottom: MediaQuery.of(context).viewInsets.bottom),
-                    child: AddTaskModal(
-                      addCallback: addTask,
-                    ),
+                    child: AddTaskModal(),
                   )));
         },
         child: Icon(Icons.add),
@@ -80,7 +73,7 @@ class _TaskScreenState extends State<TaskScreen> {
                     textAlign: TextAlign.center,
                   ),
                   Text(
-                    '${this.tasks.length} tasks',
+                    '${Provider.of<TodoModel>(context).tasksLength} tasks',
                     style: TextStyle(color: Colors.white, fontSize: 18),
                   )
                 ],
@@ -98,7 +91,6 @@ class _TaskScreenState extends State<TaskScreen> {
                         topRight: Radius.circular(20))),
                 height: 100,
                 child: TaskList(
-                  tasks: this.tasks,
                   toggleCallback: toggleComplete,
                 ),
               ),
