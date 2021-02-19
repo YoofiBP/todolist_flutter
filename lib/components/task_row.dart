@@ -13,14 +13,20 @@ class TaskRow extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 30, right: 50),
       child: ListTile(
-        title: Text(task.task,
-            style: TextStyle(
-              decoration: task.isDone
-                  ? TextDecoration.lineThrough
-                  : TextDecoration.none,
-              fontWeight: FontWeight.w700,
-              fontSize: 18,
-            )),
+        title: GestureDetector(
+          onLongPress: () {
+            Provider.of<TodoModel>(context, listen: false)
+                .removeTask(this.task);
+          },
+          child: Text(task.task,
+              style: TextStyle(
+                decoration: task.isDone
+                    ? TextDecoration.lineThrough
+                    : TextDecoration.none,
+                fontWeight: FontWeight.w700,
+                fontSize: 18,
+              )),
+        ),
         trailing: Checkbox(
           value: task.isDone,
           onChanged: (value) {

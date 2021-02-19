@@ -75,7 +75,7 @@ class _TaskScreenState extends State<TaskScreen> {
                   Text(
                     '${Provider.of<TodoModel>(context).tasksLength} tasks',
                     style: TextStyle(color: Colors.white, fontSize: 18),
-                  )
+                  ),
                 ],
               ),
             ),

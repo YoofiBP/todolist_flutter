@@ -24,6 +24,11 @@ class TodoModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  void removeTask(Task task) {
+    _tasks.remove(task);
+    notifyListeners();
+  }
+
   int get tasksLength => _tasks.length;
   int get nextId => _tasks.length + 1;
 
